@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Purchase Flow</title>
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="product">
+  <h2>Product 1</h2>
+  <p>Price: $10</p>
+  <button>Add to Cart</button>
+</div>
+
+<div class="product">
+  <h2>Product 2</h2>
+  <p>Price: $20</p>
+  <button>Add to Cart</button>
+</div>
+
+<div id="cart">
+  <h2>Cart</h2>
+  <ul id="cartItems"></ul>
+  <p>Total: <span id="totalPrice">0</span>$</p>
+</p>
+</div>
+
+<script>
+  let cartItems = [];
+  let totalPrice = 0;
+
+  function addToCart(productName, price) {
+    cartItems.push({ name: productName, price: price });
+    totalPrice += price;
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartItemsElement = document.getElementById("cartItems");
+    cartItemsElement.innerHTML = "";
+    cartItems.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - $${item.price}`;
+      cartItemsElement.appendChild(li);
+    });
+    document.getElementById("totalPrice").textContent = totalPrice;
+  }
+</script>
+
+</body>
+</html>
